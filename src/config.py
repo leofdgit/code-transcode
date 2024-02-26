@@ -17,7 +17,7 @@ def load_required(name: str) -> str:
 
 def load_config() -> AIConfig:
     return AIConfig(
-        load_required("AI_PROVIDER"),
-        load_required("AI_MODEL"),
-        load_required("AI_API_KEY"),
+        provider=load_required("AI_PROVIDER"),
+        model=load_required("AI_MODEL"),
+        api_key=load_required("AI_API_KEY"),
     )

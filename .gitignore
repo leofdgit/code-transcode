@@ -2,3 +2,6 @@ PLAN.md
 __pycache__
 data_store.json
 base.py
+test_cases.json
+output.*
+*.dat

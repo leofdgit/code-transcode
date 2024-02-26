@@ -8,7 +8,7 @@ class InputLanguage(str, Enum):
 
 
 class OutputLanguage(str, Enum):
-    TYPESCRIPT = "typescript"
+    JAVASCRIPT = "javascript"
 
 
 class Transcoder:
@@ -29,5 +29,6 @@ class Transcoder:
 def _system_prompt(input_language: InputLanguage, output_language: OutputLanguage):
     return f"""
     You will receive a code snippet in language {input_language.name}. Rewrite the code in
-    language {output_language.name}.
+    language {output_language.name}. The code snippet will contain a top-level function called
+    `main`: your code must also define a top-level function called `main`.
     """
