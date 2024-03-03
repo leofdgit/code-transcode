@@ -6,21 +6,22 @@ type JSON = dict[str, "JSON"] | list["JSON"] | str | int | float | bool | None
 
 
 class ValueResult(BaseModel):
-    type: Literal["Value"]
-    value: JSON
+    result: Literal["success"]
+    output: JSON
 
 
 class ErrorResult(BaseModel):
-    type: Literal["Error"]
+    result: Literal["failure"]
+    output: JSON
 
 
 class Result(BaseModel):
-    result: Union[ValueResult, ErrorResult] = Field(discriminator="type")
+    result: Union[ValueResult, ErrorResult] = Field(discriminator="result")
 
 
 class CompareResult(BaseModel):
     idx: int
-    diff_type: Union[Literal["type"], Literal["value"]]
+    diff_type: Union[Literal["result"], Literal["output"]]
 
 
 def compare_results(
@@ -33,8 +34,8 @@ def compare_results(
 
     output: list[CompareResult] = []
     for i, (br, nr) in enumerate(zip(base_results, new_results)):
-        if br.result.type != nr.result.type:
-            output.append(CompareResult(idx=i, diff_type="type"))
-        elif br.result.type == "Value" and br.result.value != nr.result.value:
-            output.append(CompareResult(idx=i, diff_type="value"))
+        if br.result.result != nr.result.result:
+            output.append(CompareResult(idx=i, diff_type="result"))
+        elif br.result.result == "success" and br.result.output != nr.result.output:
+            output.append(CompareResult(idx=i, diff_type="output"))
     return output

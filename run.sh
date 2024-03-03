@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DOCKERFILE_NAME=$1
+IMAGE_NAME=$2
+OUTPUT_FILE_NAME=$3
+
+# Build the docker image
+docker build -f $DOCKERFILE_NAME -t $IMAGE_NAME .
+
+# Run the docker container and output the result to a file
+docker run $IMAGE_NAME > $OUTPUT_FILE_NAME

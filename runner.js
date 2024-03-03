@@ -9,10 +9,10 @@ function runFunctionWithArgs(jsonArgs) {
     }
 
     const result = main(...args);
-    console.log(result);
+    console.log(JSON.stringify(result));
     process.exit(0);
   } catch (e) {
-    console.error(e.stack || e);
+    console.error(JSON.stringify(e.stack || e));
     process.exit(1);
   }
 }

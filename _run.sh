@@ -8,8 +8,8 @@ do
     exitCode=$?
 
     if [ $exitCode -eq 0 ]; then
-        echo "{\"result\": \"success\", \"value\": \"$output\"}"
+        echo "{\"result\": \"success\", \"output\": $output}"
     else
-        echo "{\"result\": \"failure\", \"output\": \"$output\"}"
+        echo "{\"result\": \"failure\", \"output\": $output}"
     fi
 done < "$inputFile"

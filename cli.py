@@ -44,7 +44,9 @@ async def eval(base_results_path: str, new_results_path: str):
     with open(new_results_path, "r") as f:
         new_results = f.readlines()
         new_results = [Result(result=json.loads(r)) for r in new_results]
-    return compare_results(base_results, new_results)
+    with open("compare_results.dat", "w") as f:
+        for r in compare_results(base_results, new_results):
+            f.write(r.model_dump_json())
 
 
 @click.group()
