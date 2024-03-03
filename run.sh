@@ -1,8 +1,10 @@
 #!/bin/bash
 
 DOCKERFILE_NAME=$1
-IMAGE_NAME=$2
-OUTPUT_FILE_NAME=$3
+OUTPUT_FILE_NAME=$2
+
+IMAGE_NAME=$(date +"%s")
+
 
 # Build the docker image
 docker build -f $DOCKERFILE_NAME -t $IMAGE_NAME .
