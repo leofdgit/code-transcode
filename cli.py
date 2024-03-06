@@ -68,7 +68,7 @@ async def transcode(
             new_results = [Result(result=json.loads(r)) for r in new_results]
         results_file = "compare_results.dat"
         with open("test_cases.dat", "r") as f:
-            test_cases = [json.loads(l) for l in f.readlines()]
+            test_cases = [json.loads(line) for line in f.readlines()]
         with open(results_file, "w") as f:
             for r in compare_results(
                 base_results,
@@ -79,10 +79,8 @@ async def transcode(
         # If there are no errors then return, else repeat
         if os.path.exists(results_file) and os.path.getsize(results_file) > 0:
             with open(results_file, "r") as f:
-                discrepencies = [CompareResult(**json.loads(l)) for l in f.readlines()]
-            output_code = transcoder.iterate(
-                input_language, input_code, output_language, output_code, discrepencies
-            )
+                discrepencies = [CompareResult(**json.loads(line)) for line in f.readlines()]
+            output_code = transcoder.iterate(input_language, input_code, output_language, output_code, discrepencies)
             with open(output_file, "w") as f:
                 f.write(output_code)
         else:

@@ -12,9 +12,7 @@ class OpenAIClient(AsyncOpenAI, AIClient):
         AsyncOpenAI.__init__(self, *args, api_key=config.api_key, **kwargs)
 
     async def __call__(self, system_prompt: Union[str, None], user_prompt: str) -> str:
-        print(
-            f"Calling OpenAIClient with system_prompt={system_prompt}\n\nuser_prompt={user_prompt}"
-        )
+        print(f"Calling OpenAIClient with system_prompt={system_prompt}\n\nuser_prompt={user_prompt}")
         response = await self.chat.completions.create(
             max_tokens=1000,  # TODO: change this arbitrary value
             model=self.config.model,

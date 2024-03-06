@@ -19,9 +19,7 @@ class Transcoder:
         input_language: ProgrammingLanguage,
         output_language: ProgrammingLanguage,
     ) -> str:
-        return await self.ai_client(
-            _system_prompt(input_language, output_language), input_code
-        )
+        return await self.ai_client(_system_prompt(input_language, output_language), input_code)
 
     async def iterate(
         self,
@@ -32,16 +30,12 @@ class Transcoder:
         discrependies: list[CompareResult],
     ) -> str:
         return await self.ai_client(
-            _system_prompt_iterate(
-                input_language, input_code, output_language, output_code
-            ),
+            _system_prompt_iterate(input_language, input_code, output_language, output_code),
             "\n".join(d.model_dump_json() for d in discrependies),
         )
 
 
-def _system_prompt(
-    input_language: ProgrammingLanguage, output_language: ProgrammingLanguage
-):
+def _system_prompt(input_language: ProgrammingLanguage, output_language: ProgrammingLanguage):
     return f"""
     You will receive a code snippet in language {input_language.name}. Rewrite the code in
     language {output_language.name}. The code snippet will contain a top-level function called
