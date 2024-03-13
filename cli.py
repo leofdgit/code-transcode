@@ -14,9 +14,9 @@ from src.transcoder import ProgrammingLanguage, Transcoder
 def get_builder(lang: ProgrammingLanguage) -> str:
     match lang.value:
         case "python":
-            return "runners/python/Dockerfile.py"
+            return "runners/python/py.Dockerfile"
         case "javascript":
-            return "runners/nodejs/Dockerfile.js"
+            return "runners/nodejs/js.Dockerfile"
         case _:
             raise ValueError(f"Cannot find builder for language {lang}")
 
@@ -75,12 +75,14 @@ async def transcode(
                 new_results,
                 test_cases,
             ):
-                f.write(r.model_dump_json())
+                f.write(f"{r.model_dump_json()}\n")
         # If there are no errors then return, else repeat
         if os.path.exists(results_file) and os.path.getsize(results_file) > 0:
             with open(results_file, "r") as f:
                 discrepencies = [CompareResult(**json.loads(line)) for line in f.readlines()]
-            output_code = transcoder.iterate(input_language, input_code, output_language, output_code, discrepencies)
+            output_code = await transcoder.iterate(
+                input_language, input_code, output_language, output_code, discrepencies
+            )
             with open(output_file, "w") as f:
                 f.write(output_code)
         else:

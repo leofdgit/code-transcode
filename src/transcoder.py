@@ -50,8 +50,10 @@ def _system_prompt_iterate(
     output_code: str,
 ):
     return f"""
+    [no prose]
+    [only {output_language}]
     An attempt was made to convert some code from {input_language.name} to {output_language.name} but 
     some errors were made. The base code is \n\n{input_code}\n\n and the new code is \n\n{output_code}\n\n.
     I'll send you the test cases for which the base code's output did not match the new code's output.
-    Consider these discrepencies and response with ONLY an amended solution in language {output_language.name}.
+    Consider these discrepencies and response with EXACTLY a code snippet with an amended solution in language {output_language.name}.
     """
