@@ -89,31 +89,12 @@ async def transcode(
             return
 
 
-@click.command(cls=AsyncClickCommand)
-@click.argument("base_results_path", type=click.STRING)
-@click.argument("new_results_path", type=click.STRING)
-async def eval(base_results_path: str, new_results_path: str):
-    """
-    Compare the results of two implementations of a function.
-    """
-    with open(base_results_path, "r") as f:
-        base_results = f.readlines()
-        base_results = [Result(result=json.loads(r)) for r in base_results]
-    with open(new_results_path, "r") as f:
-        new_results = f.readlines()
-        new_results = [Result(result=json.loads(r)) for r in new_results]
-    with open("compare_results.dat", "w") as f:
-        for r in compare_results(base_results, new_results):
-            f.write(r.model_dump_json())
-
-
 @click.group()
 def cli():
     pass
 
 
 cli.add_command(transcode)
-cli.add_command(eval)
 
 if __name__ == "__main__":
     cli()
