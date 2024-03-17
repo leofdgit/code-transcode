@@ -1,5 +1,3 @@
-const main = require("./output.js");
-
 function runFunctionWithArgs(jsonArgs) {
   try {
     const args = JSON.parse(jsonArgs);

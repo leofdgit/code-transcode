@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo -e "\n" >> output.js
+echo -e "\nmodule.exports.$1 = $1;" >> output.js
+
+echo -e "const { $1: main } = require('./output.js')\n$(cat runner.js)" > runner.js
