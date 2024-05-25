@@ -2,6 +2,8 @@
 
 inputFile="test_cases.dat"
 
+$(./prepper "$1") 
+
 while IFS= read -r line
 do
     output=$(./runner "$line" 2>&1)

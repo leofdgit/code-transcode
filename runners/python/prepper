@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Create a new file with the intended line, correctly handling \n
+echo -n "from output import $1 as main" > temp_file.py
+
+# Add an actual newline to separate the newly added line from the original content
+echo "" >> temp_file.py
+
+# Append the original file content to the temporary file
+cat runner.py >> temp_file.py
+
+# Replace the original file with the modified temporary file
+mv temp_file.py runner.py

@@ -2,8 +2,6 @@ import json
 import sys
 import traceback
 
-from output import main
-
 
 def run_function_with_args(json_args):
     try:

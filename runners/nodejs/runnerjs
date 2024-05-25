@@ -1,6 +1,3 @@
 #!/bin/bash
 
-echo -e "\n" >> output.js
-echo -e "\nmodule.exports = main;" >> output.js
-
 node runner.js $1
