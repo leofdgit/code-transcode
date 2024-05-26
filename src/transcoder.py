@@ -37,9 +37,12 @@ class Transcoder:
 
 def _system_prompt(input_language: ProgrammingLanguage, output_language: ProgrammingLanguage):
     return f"""
+    [no prose]
+    [only {output_language}]
     You will receive a code snippet in language {input_language.name}. Rewrite the code in
     language {output_language.name}. The code snippet will contain a top-level function called
-    `main`: your code must also define a top-level function called `main`.
+    `main`: your code must also define a top-level function called `main`. Do NOT include any
+    text formatting such as markdown code blocks.
     """
 
 
