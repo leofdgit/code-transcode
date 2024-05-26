@@ -6,7 +6,7 @@ A tool for converting code from one programming language to another.
 
 ## Usage
 
-### 1. Install project dependencies
+### 1. Install project dependencies
 
 Set up a Python virtual environment, activate it and install the dependencies within it.
 
@@ -22,7 +22,7 @@ At present, only JavaScript and Python are supported. Your file must contain a s
 
 You can skip this step by using the `output.py` that ships with this repo.
 
-### 3. (Optional) create test cases
+### 3. (Optional) create test cases
 
 Create a file called `test_cases.dat` that contains a list of inputs for the function under test. Each line in the file must be a JSON-serialized array of input values.
 
