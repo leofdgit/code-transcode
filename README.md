@@ -42,7 +42,7 @@ You'll need to make sure that values for the following environment variables are
 
 **AI_API_KEY**: OpenAI API key.
 **AI_MODEL**: OpenAI model, e.g. `gpt-4o`.
-**AI_PROVIDER=**open_ai
+**AI_PROVIDER**: `open_ai`.
 
 ```
 python -m cli transcode <input_file> <input_language> <output_file> <output_language>
